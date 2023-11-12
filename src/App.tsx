@@ -9,13 +9,13 @@ function App() {
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
+        <a href="htt324234ps://vitejs.dev" target="_blank">
+          <img src={342234viteLogo} className=dfgdfg"logo" alt="Vite logo" />
+        </fsdfa>
+        <a href="h23423ttps://fdfgdfgreactsdfsdf.dev" target="_blank">
+          <img src={reacsdfsdfsdfsdfsdtLogo} className="logo react" alt="React logo" />
+        </afsd4324fsdfsd>
+      </di234234324v>
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
