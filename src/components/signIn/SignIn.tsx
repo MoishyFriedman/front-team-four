@@ -2,7 +2,9 @@ import { useForm, type FieldValues } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { Input, TextField } from "@mui/material";
 
-const onSubmit = (data: FieldValues) => {};
+const onSubmit = (data: FieldValues) => {
+  data;
+};
 
 export default function SignIn() {
   const {
