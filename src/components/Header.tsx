@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import { useNavigate } from "react-router-dom";
 
-export default function CountCart() {
+export default function Header() {
   const [count, setCount] = useState(null);
   const [name, setName] = useState("");
   useEffect(() => {
@@ -45,7 +45,11 @@ export default function CountCart() {
               <ShoppingCartIcon />
             </StyledBadge>
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}></Typography>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1 }}
+          ></Typography>
           <Button
             color="inherit"
             onClick={() => {
