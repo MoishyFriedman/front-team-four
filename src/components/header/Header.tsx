@@ -11,6 +11,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import { useNavigate } from "react-router-dom";
+
 export default function CountCart() {
   const [count, setCount] = useState(null);
   const [name, setName] = useState("");
