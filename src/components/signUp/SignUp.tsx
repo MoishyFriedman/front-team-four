@@ -16,7 +16,7 @@ export default function SignUp() {
   const location = useLocation();
 
   const onSubmit = async (data: FieldValues) => {
-    const api = await axios.post("http://localhost:5080/users/signUp", data);
+    const api = await axios.post("http://localhost:9090/users/signUp", data);
     if (api.status >= 200 && api.status <= 299) {
       navigate(location.state.from || "/");
     } else {
