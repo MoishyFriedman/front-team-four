@@ -1,0 +1,19 @@
+.headerStyle {
+  display: flex;
+  background-color: burlywood;
+  top: 0;
+  width: 100vw;
+  height: 8vh;
+  text-align: center;
+  left: 0;
+  right: 0;
+  justify-content: first baseline;
+}
+
+.profile {
+  height: 50px;
+  width: 50px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
