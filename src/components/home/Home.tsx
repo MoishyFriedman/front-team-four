@@ -12,12 +12,12 @@ export default function Home() {
   useEffect(() => {
     async function getData() {
       try {
-        // const categoriesResult = await axios.get("http://localhost:/");
-        // setCategories(categoriesResult.data);
-        // const topFiveResult = await axios.get("http://localhost:/");
-        // setTopFive(topFiveResult.data);
-        // const productsResult = await axios.get("http://localhost:/");
-        // setProducts(productsResult.data);
+        const categoriesResult = await axios.get("http://localhost:/");
+        setCategories(categoriesResult.data);
+        const topFiveResult = await axios.get("http://localhost:/");
+        setTopFive(topFiveResult.data);
+        const productsResult = await axios.get("http://localhost:/");
+        setProducts(productsResult.data);
       } catch (error) {
         alert(error);
       }
@@ -43,7 +43,7 @@ export default function Home() {
       </div>
       <div>
         {products.map((product) => (
-          <Link to={`/product/?categoryName=${product.product_name}`}>
+          <Link to={`/product/?productId=${product.product_name}`}>
             <div>
               <div>{product.product_image_url}</div>
               <div>

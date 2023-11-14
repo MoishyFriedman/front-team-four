@@ -1,5 +1,5 @@
 import "./App.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Routes, Route, BrowserRouter } from "react-router-dom";
 import Home from "./components/home/Home";
 import SignIn from "./components/signIn/SignIn";
 import SignUp from "./components/signUp/SignUp";

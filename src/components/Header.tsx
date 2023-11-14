@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import { useNavigate } from "react-router-dom";
 
-export default function CountCart() {
+export default function Header() {
   const [count, setCount] = useState(null);
   const [name, setName] = useState("");
   useEffect(() => {
