@@ -16,7 +16,6 @@ export default function SignUp() {
   const location = useLocation();
 
   const onSubmit = async (data: FieldValues) => {
-<<<<<<< HEAD
     data = { email: data.email, password: data.password };
     try {
       const api = await axios.post("http://localhost:4000/users/signUp", data);
@@ -28,13 +27,6 @@ export default function SignUp() {
       }
     } catch (error) {
       alert(error);
-=======
-    const api = await axios.post("http://localhost:9090/users/signUp", data);
-    if (api.status >= 200 && api.status <= 299) {
-      navigate(location.state.from || "/");
-    } else {
-      alert("try agin");
->>>>>>> main
     }
   };
 
