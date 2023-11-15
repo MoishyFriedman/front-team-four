@@ -23,7 +23,7 @@ export default function SignUp() {
         alert(api.data);
         navigate(location.state?.from || "/");
       } else {
-        throw new Error(api.statusText);
+        throw new Error(api.data);
       }
     } catch (error) {
       alert(error);
