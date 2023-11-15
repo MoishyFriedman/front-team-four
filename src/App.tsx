@@ -1,5 +1,5 @@
 import "./App.css";
-import { createBrowserRouter, RouterProvider, Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Home from "./components/home/Home";
 import SignIn from "./components/signIn/SignIn";
 import SignUp from "./components/signUp/SignUp";
@@ -8,41 +8,20 @@ import Category from "./components/category/Category";
 import Compare from "./components/compareProducts/Compare";
 import Cart from "./components/cart/Cart";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/signIn",
-    element: <SignIn />,
-  },
-  {
-    path: "/signUp",
-    element: <SignUp />,
-  },
-  {
-    path: "/product",
-    element: <Product />,
-  },
-  {
-    path: "/category",
-    element: <Category />,
-  },
-  {
-    path: "/category/compare",
-    element: <Compare />,
-  },
-  {
-    path: "/cart",
-    element: <Cart />,
-  },
-]);
-
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signIn" element={<SignIn />} />
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/product" element={<Product />} />
+          <Route path="/category" element={<Category />} />
+          <Route path="/category/compare" element={<Compare />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

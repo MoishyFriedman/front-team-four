@@ -16,8 +16,6 @@ export default function Home() {
         setCategories(categoriesResult.data);
         const topFiveResult = await axios.get("http://localhost:4000/products/topCategories");
         setTopFive(topFiveResult.data);
-        console.log(topFiveResult.data);
-
         // const productsResult = await axios.get("http://localhost::4000/products");
         // setProducts(productsResult.data);
       } catch (error) {
@@ -28,34 +26,36 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <div>
       <div>
         {categories.map((category) => (
-          <Link to={`/category/?categoryName=${category.id}`}>
-            <Button id={category.id}>{category.category_name}</Button>
+          <Link id={category._id} to={`/category/?categoryId=${category._id}`}>
+            <Button id={category._id}>{category.category_name}</Button>
           </Link>
         ))}
       </div>
       <div>
         {topFive.map((category) => (
-          <Link to={`/category/?categoryName=${category.id}`}>
-            <Button id={category.id}>{category.category_name}</Button>
+          <Link id={category._id} to={`/category/?categoryId=${category._id}`}>
+            <Button id={category._id}>{category.category_name}</Button>
           </Link>
         ))}
       </div>
       <div>
         {products.map((product) => (
-          <Link to={`/product/?productId=${product.product_name}`}>
+          <Link id={product._id} to={`/product/?productId=${product._id}`}>
             <div>
               <div>{product.product_image_url}</div>
               <div>
-                <Typography variant="h3">{product.product_name}</Typography>
-                <Typography>{product.description}</Typography>
+                <Typography id={product._id} variant="h3">
+                  {product.product_name}
+                </Typography>
+                <Typography id={product._id}>{product.description}</Typography>
               </div>
             </div>
           </Link>
         ))}
       </div>
-    </>
+    </div>
   );
 }
