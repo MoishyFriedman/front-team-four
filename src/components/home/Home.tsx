@@ -3,7 +3,7 @@ import { Button, Typography } from "@mui/material";
 import axios from "axios";
 import { Product, Category } from "../../interface/interfaceDB";
 import { Link } from "react-router-dom";
-import CountCart from "../Header";
+import base_url from "../../../helper";
 
 export default function Home() {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -13,11 +13,11 @@ export default function Home() {
   useEffect(() => {
     async function getData() {
       try {
-        const categoriesResult = await axios.get("http://localhost:4000/products/categories");
+        const categoriesResult = await axios.get(`${base_url}products/categories`);
         setCategories(categoriesResult.data);
-        const topFiveResult = await axios.get("http://localhost:4000/products/topCategories");
+        const topFiveResult = await axios.get(`${base_url}products/topCategories`);
         setTopFive(topFiveResult.data);
-        // const productsResult = await axios.get("http://localhost::4000/products");
+        // const productsResult = await axios.get(`${base_url}products`);
         // setProducts(productsResult.data);
       } catch (error) {
         alert(error);

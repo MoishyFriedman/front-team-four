@@ -3,6 +3,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import { Button, Input, Typography } from "@mui/material";
 import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import base_url from "../../../helper";
 
 export default function SignIn() {
   const {
@@ -16,12 +17,12 @@ export default function SignIn() {
   const onSubmit = async (data: FieldValues) => {
     data = { email: data.email, password: data.password };
     try {
-      const api = await axios.post("http://localhost:4000/users/signIn", data);
+      const api = await axios.post(`${base_url}users/signIn`, data);
       if (api.statusText === "OK") {
         alert(api.data);
         navigate(location.state?.from || "/");
       } else {
-        throw new Error(api.statusText);
+        throw new Error(api.data);
       }
     } catch (error) {
       alert(error);
