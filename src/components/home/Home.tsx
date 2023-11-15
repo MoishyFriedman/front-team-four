@@ -13,9 +13,9 @@ export default function Home() {
   useEffect(() => {
     async function getData() {
       try {
-        const categoriesResult = await axios.get("http://localhost:4000/products/categories");
+        const categoriesResult = await axios.get("http://localhost:5050/products/categories");
         setCategories(categoriesResult.data);
-        const topFiveResult = await axios.get("http://localhost:4000/products/topCategories");
+        const topFiveResult = await axios.get("http://localhost:5050/products/topCategories");
         setTopFive(topFiveResult.data);
         // const productsResult = await axios.get("http://localhost::4000/products");
         // setProducts(productsResult.data);
