@@ -3,6 +3,7 @@ import { Button, Typography } from "@mui/material";
 import axios from "axios";
 import { Product, Category } from "../../interface/interfaceDB";
 import { Link } from "react-router-dom";
+import CountCart from "../Header";
 
 export default function Home() {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -26,7 +27,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <>
       <div>
         {categories.map((category) => (
           <Link id={category._id} to={`/category/?categoryId=${category._id}`}>
@@ -56,6 +57,6 @@ export default function Home() {
           </Link>
         ))}
       </div>
-    </div>
+    </>
   );
 }
