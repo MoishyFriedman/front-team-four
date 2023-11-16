@@ -32,13 +32,13 @@ export default function Home() {
 
   return (
     <>
-      <div>
+      <Box>
         {categories.map((category) => (
           <Link key={category._id} to={`/category/?categoryId=${category._id}`}>
             <Button key={category._id}>{category.category_name}</Button>
           </Link>
         ))}
-      </div>
+      </Box>
       <Box sx={{ height: "50px" }}></Box>
       <Box sx={{ display: "flex", flexDirection: "row" }}>
         <Box>

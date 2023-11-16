@@ -43,7 +43,9 @@ export default function Product() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small"><AddShoppingCartIcon /></Button>
+        <Button size="small">
+          <AddShoppingCartIcon />
+        </Button>
         <Link href="../compareProducts">Compare product</Link>
       </CardActions>
       </Card>
