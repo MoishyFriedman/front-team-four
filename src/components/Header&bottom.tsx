@@ -4,6 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import HomeIcon from "@mui/icons-material/Home";
 import Badge, { BadgeProps } from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { styled } from "@mui/material/styles";
@@ -41,7 +42,20 @@ export default function Header() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton aria-label="cart">
+            <IconButton
+              onClick={() => {
+                navigate("/");
+              }}
+              aria-label="home"
+            >
+              <HomeIcon />
+            </IconButton>
+            <IconButton
+              onClick={() => {
+                navigate("/cart");
+              }}
+              aria-label="cart"
+            >
               <StyledBadge badgeContent={count} color="secondary">
                 <ShoppingCartIcon />
               </StyledBadge>
@@ -69,7 +83,6 @@ export default function Header() {
         </AppBar>
       </Box>
       <Outlet />
-      <Box sx={{ width: "100%", height: "50px", color: "inherit" }}></Box>
     </>
   );
 }
