@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react";
-import { Button, Typography } from "@mui/material";
+import { Box, Button, ListItemButton, ListItemText, Typography } from "@mui/material";
 import axios from "axios";
 import { Product, Category } from "../../interface/interfaceDB";
 import { Link } from "react-router-dom";
-import CountCart from "../Header";
+import base_url from "../../../helper";
+import TopFive from "./TopFiveProducts";
 
 export default function Home() {
   const [categories, setCategories] = useState<Category[]>([]);
-  const [topFive, setTopFive] = useState<Category[]>([]);
+  const [topFiveCategories, setTopFiveCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     async function getData() {
       try {
-        const categoriesResult = await axios.get("http://localhost:5050/products/categories");
+        const categoriesResult = await axios.get(`${base_url}products/categories`);
         setCategories(categoriesResult.data);
-        const topFiveResult = await axios.get("http://localhost:5050/products/topCategories");
-        setTopFive(topFiveResult.data);
-        // const productsResult = await axios.get("http://localhost::4000/products");
-        // setProducts(productsResult.data);
+        const topFiveResult = await axios.get(`${base_url}products/topCategories`);
+        setTopFiveCategories(topFiveResult.data);
+        const productsResult = await axios.get(`${base_url}products/topProducts`);
+        setProducts(productsResult.data);
       } catch (error) {
         alert(error);
       }
@@ -30,33 +31,28 @@ export default function Home() {
     <>
       <div>
         {categories.map((category) => (
-          <Link id={category._id} to={`/category/?categoryId=${category._id}`}>
-            <Button id={category._id}>{category.category_name}</Button>
+          <Link key={category._id} to={`/category/?categoryId=${category._id}`}>
+            <Button key={category._id}>{category.category_name}</Button>
           </Link>
         ))}
       </div>
-      <div>
-        {topFive.map((category) => (
-          <Link id={category._id} to={`/category/?categoryId=${category._id}`}>
-            <Button id={category._id}>{category.category_name}</Button>
-          </Link>
-        ))}
-      </div>
-      <div>
-        {products.map((product) => (
-          <Link id={product._id} to={`/product/?productId=${product._id}`}>
-            <div>
-              <div>{product.product_image_url}</div>
-              <div>
-                <Typography id={product._id} variant="h3">
-                  {product.product_name}
-                </Typography>
-                <Typography id={product._id}>{product.description}</Typography>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+      <Box sx={{ height: "50px" }}></Box>
+      <Box sx={{ display: "flex", flexDirection: "row" }}>
+        <Box>
+          <Typography variant="h5">top five categories</Typography>
+          {topFiveCategories.map((category) => (
+            <Link key={category._id} to={`/category/?categoryId=${category._id}`}>
+              <ListItemButton key={category._id} component="a" href="#simple-list">
+                <ListItemText key={category._id} primary={category.category_name} />
+              </ListItemButton>
+            </Link>
+          ))}
+        </Box>
+        <Box sx={{ flexGrow: 1 }}></Box>
+        <Box>
+          <TopFive products={products} />
+        </Box>
+      </Box>
     </>
   );
 }
