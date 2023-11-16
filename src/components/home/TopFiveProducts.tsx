@@ -14,7 +14,7 @@ export default function TopFive(itemData: { products: Product[] }) {
           {itemData.products.map((item) => (
             <Link key={item._id} to={`/product/?productId=${item._id}`}>
               <ImageListItem key={item._id}>
-                <img srcSet={`${item.product_image_url}?w=248&fit=crop&auto=format&dpr=2 2x`} src={`${item.product_image_url}?w=248&fit=crop&auto=format`} alt={item.title} loading="lazy" />
+                <img srcSet={`${item.product_image_url}?w=248&fit=crop&auto=format&dpr=2 2x`} src={`${item.product_image_url}?w=248&fit=crop&auto=format`} alt={item.product_name} loading="lazy" />
                 <ImageListItemBar key={item._id} title={item.product_name} />
               </ImageListItem>
             </Link>

@@ -33,7 +33,9 @@ export default function SignUp() {
     try {
       const api = await axios.post(`${base_url}users/signUp`, data);
       if (api.statusText === "OK") {
-        alert(api.data);
+        localStorage.setItem("userId", JSON.stringify(api.data));
+        localStorage.setItem("email", JSON.stringify(data.email));
+        alert("user exist");
         navigate(location.state?.from || "/");
       } else {
         throw new Error(api.data);
