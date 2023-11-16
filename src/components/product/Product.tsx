@@ -1,47 +1,45 @@
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Link from "@mui/material/Link";
-import MapComponent from "./map/MapStor";
-
-interface IProduct {
-  product_name: string;
-  product_image_url: string;
-  description: string;
-  category_id: string;
-  price: number;
-  stock_quantity: number;
-  view: number;
-}
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { useContext, useEffect, useState } from 'react';
+import Link from '@mui/material/Link';
+import { ProductContext } from '../../context/ProductContext';
+import { IProduct } from '../../interface/interfaceDB';
+import { Box } from '@mui/material';
 
 export default function Product() {
-  const [product, setProduct] = useState<IProduct | null>(null);
+  const productContext = useContext(ProductContext);
+  const [thisProduct, setThisProduct] = useState<IProduct | null>(null);
 
   useEffect(() => {
-    const getProduct = async (id: string) => {
-      const res = await axios(`http://localhost:9090/${id}`);
-      setProduct(res.data);
-    };
-    getProduct("123");
-  }, []);
+    const getProduct = () => {
+      if (!productContext) return null;
+      const { product } = productContext;
+      setThisProduct(product)
+    }
+    getProduct()
+  }, [])
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia sx={{ height: 140 }} image={product?.product_image_url} title="green iguana" />
-      <CardContent>
+    <Box textAlign= "center">
+    <Card sx={{ maxWidth: 345} }>
+      <CardMedia
+        sx={{ height: 140 }}
+        image={thisProduct?.product_image_url}
+        title="green iguana"
+      />
+      <CardContent >
         <Typography gutterBottom variant="h5" component="div">
-          {product?.product_name}
+          {thisProduct?.product_name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {product?.description}
+          {thisProduct?.description}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {product?.price}
+          {thisProduct?.price}
         </Typography>
       </CardContent>
       <CardActions>
@@ -50,6 +48,7 @@ export default function Product() {
         </Button>
         <Link href="../compareProducts">Compare product</Link>
       </CardActions>
-    </Card>
+      </Card>
+    </Box>
   );
 }
