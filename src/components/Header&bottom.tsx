@@ -45,6 +45,7 @@ export default function Header() {
           <Toolbar>
             <IconButton
               onClick={() => {
+                name;
                 navigate("/");
               }}
               aria-label="home"

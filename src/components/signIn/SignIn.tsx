@@ -32,10 +32,10 @@ export default function SignIn() {
       if (api.statusText === "OK") {
         localStorage.setItem("userId", JSON.stringify(api.data));
         localStorage.setItem("email", JSON.stringify(data.email));
-        alert(api.data);
+        alert("User is logged in");
         navigate(location.state?.from || "/");
       } else {
-        throw new Error(api.data);
+        throw new Error("User does not exist");
       }
     } catch (error) {
       alert(error);

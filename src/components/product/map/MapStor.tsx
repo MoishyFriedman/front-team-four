@@ -1,10 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import "./map.css";
 import "ol/ol.css";
 import { Map } from "ol";
 import map from "./mapConf";
 import { addIcon } from "./mapConf";
-import { add } from "ol/coordinate";
+import { ProductContext } from "../../../context/ProductContext";
 
 export function useMap() {
   const mapRef = useRef<Map>();
@@ -17,6 +17,10 @@ export function useMap() {
 export default function MapComponent() {
   const mapRef = useRef<HTMLDivElement>(null);
   const map = useMap();
+  const productContext = useContext(ProductContext);
+  if (!productContext?.product) {
+    return null;
+  }
 
   useEffect(() => {
     if (mapRef.current) {
@@ -26,8 +30,8 @@ export default function MapComponent() {
   }, [map]);
   return (
     <>
-      {array.map((coordinate) => {
-        addIcon(coordinate);
+      {productContext?.product.coordinates.map((coordinate) => {
+        addIcon([Number(coordinate)]);
       })}
       <div className="map">
         <h1>Map</h1>

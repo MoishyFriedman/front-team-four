@@ -13,4 +13,9 @@ export interface IProduct {
   price: number;
   stock_quantity: number;
   view: number;
+  owen_properties: {
+    key1: string;
+    key2: string;
+  };
+  coordinates: string[];
 }

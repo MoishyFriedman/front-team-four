@@ -35,10 +35,10 @@ export default function SignUp() {
       if (api.statusText === "OK") {
         localStorage.setItem("userId", JSON.stringify(api.data));
         localStorage.setItem("email", JSON.stringify(data.email));
-        alert("user exist");
+        alert("You have successfully registered");
         navigate(location.state?.from || "/");
       } else {
-        throw new Error(api.data);
+        throw new Error("Existing user, please sign in");
       }
     } catch (error) {
       alert(error);
