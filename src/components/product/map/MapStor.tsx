@@ -28,11 +28,12 @@ export default function MapComponent() {
       map.updateSize();
     }
   }, [map]);
+
+  productContext?.product.coordinates.map((coordinate) => {
+    addIcon([Number(coordinate)]);
+  });
   return (
     <>
-      {productContext?.product.coordinates.map((coordinate) => {
-        addIcon([Number(coordinate)]);
-      })}
       <div className="map">
         <h1>Map</h1>
         <div className="map-container">
