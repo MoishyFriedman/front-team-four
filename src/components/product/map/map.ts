@@ -5,34 +5,59 @@ import View from "ol/View";
 import { defaults } from "ol/control/defaults";
 import { defaults as interactionDefaults } from "ol/interaction/defaults";
 import { createStringXY } from "ol/coordinate";
-import { Icon, Style } from "ol/style.js";
+import { Fill, Icon, Stroke, Style } from "ol/style.js";
 import { Vector as VectorSource } from "ol/source.js";
 import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer.js";
-import { Point } from "ol/geom";
+import { Point, Polygon } from "ol/geom";
 import { ScaleLine } from "ol/control.js";
 const osmBaseLayer = new TileLayer({
   visible: true,
   source: new OSM(),
 });
 
-const vectorSource: VectorSource<Feature<Point>> = new VectorSource({
+const vectorSource = new VectorSource({
   features: [],
 });
 
-export function addIcon(coordinate: number[]) {
+export function addIcon(name: string, coordinate: number[], src: string, height: number, width: number, direction: number) {
   const iconFeature = new Feature({
     geometry: new Point(coordinate),
-    name: "location",
+    name,
   });
   const iconStyle = new Style({
     image: new Icon({
       width: 50,
-      src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTGzu0jMlps6EumN_Ae0Q70_QQQHNQKagThg&usqp=CAU",
+      src,
+    }),
+  });
+
+  const points = [
+    [coordinate[0], coordinate[1]],
+    [coordinate[0] + width, coordinate[1]],
+    [coordinate[0] + width / 2, coordinate[1] + height],
+    [coordinate[0], coordinate[1]],
+  ];
+  const polygonFeature = new Feature({
+    geometry: new Polygon([points]),
+  });
+  const geometry = polygonFeature.getGeometry();
+  if (geometry) {
+    geometry.rotate((Math.PI / 180) * direction, [coordinate[0], coordinate[1]]);
+  }
+  const polygonStyle = new Style({
+    stroke: new Stroke({
+      color: "blue",
+      width: 3,
+    }),
+    fill: new Fill({
+      color: "rgba(0, 0, 255, 0.1)",
     }),
   });
 
   iconFeature.setStyle(iconStyle);
+  polygonFeature.setStyle(polygonStyle);
   vectorSource.addFeature(iconFeature);
+  vectorSource.addFeature(polygonFeature);
 }
 
 const vectorLayer = new VectorLayer({

@@ -12,12 +12,10 @@ export default function TopFive(itemData: { products: IProduct[] }) {
   const productContext = useContext(ProductContext);
 
   function handelNavAndContext(index: number) {
-    console.log(index);
     if (!productContext) return null;
     const { product, setProduct } = productContext;
     setProduct(itemData.products[index]);
-    console.log(product);
-    product && navigate(`/product/?productId=${itemData.products[index]._id}`)
+    product && navigate(`/product/?productId=${itemData.products[index]._id}`);
   }
   return (
     <Box sx={{ display: "flex" }}>
@@ -25,7 +23,7 @@ export default function TopFive(itemData: { products: IProduct[] }) {
         <Typography variant="h5">top five products</Typography>
         <ImageList sx={{ width: 500, height: 450 }}>
           {itemData.products.map((item, index) => (
-            <Card onClick={() => handelNavAndContext(index)}>
+            <Card key={item._id} onClick={() => handelNavAndContext(index)}>
               <ImageListItem key={item._id}>
                 <img srcSet={`${item.product_image_url}?w=248&fit=crop&auto=format&dpr=2 2x`} src={`${item.product_image_url}?w=248&fit=crop&auto=format`} alt={item.product_name} loading="lazy" />
                 <ImageListItemBar key={item._id} title={item.product_name} />
@@ -34,6 +32,6 @@ export default function TopFive(itemData: { products: IProduct[] }) {
           ))}
         </ImageList>
       </Box>
-    </Box >
+    </Box>
   );
 }

@@ -19,3 +19,11 @@ export interface IProduct {
   };
   coordinates: string[];
 }
+export interface Cart {
+  _id: string;
+  user_id: string;
+  products_id: {
+    [key: number]: any;
+  };
+  __v: number;
+}

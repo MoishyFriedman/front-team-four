@@ -30,7 +30,7 @@ export default function SignIn() {
     try {
       const api = await axios.post(`${base_url}users/signIn`, data);
       if (api.statusText === "OK") {
-        localStorage.setItem("userId", JSON.stringify(api.data));
+        localStorage.setItem("userId", JSON.stringify(api.data.userId));
         localStorage.setItem("email", JSON.stringify(data.email));
         alert("User is logged in");
         navigate(location.state?.from || "/");

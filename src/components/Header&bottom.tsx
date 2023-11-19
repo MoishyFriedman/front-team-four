@@ -12,17 +12,20 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import { Outlet, useNavigate } from "react-router-dom";
+import base_url from "../../helper";
 
 export default function Header() {
-  const email = localStorage.getItem("email") || "email@gmail.com";
+  const email = localStorage.getItem("email");
+  if (!email) {
+    return null;
+  }
   const [count, setCount] = useState(null);
-  const [name, setName] = useState("");
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("");
+        const userId = localStorage.getItem("userId");
+        const response = await axios.get(`${base_url}carts/cart/${userId}`);
         setCount(response.data);
-        setName(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -45,7 +48,6 @@ export default function Header() {
           <Toolbar>
             <IconButton
               onClick={() => {
-                name;
                 navigate("/");
               }}
               aria-label="home"
