@@ -6,16 +6,7 @@ import { Link } from "react-router-dom";
 import base_url from "../../../helper";
 import TopFive from "./TopFiveProducts";
 
-const handleClick = () => {
-  try {
-    const api = axios.post();
-    if (api.statusTexst !== "OK") {
-      throw new Error(api.status);
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
+
 
 export default function Home() {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -43,7 +34,7 @@ export default function Home() {
       <Box>
         {categories.map((category) => (
           <Link key={category._id} to={`/category/?categoryId=${category._id}`}>
-            <Button onClick={handleClick} key={category._id}>
+            <Button  key={category._id}>
               {category.category_name}
             </Button>
           </Link>
